@@ -18,4 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // Route::get('/task/{type}/{task}', [ApiController::class, 'retain']);
-Route::get('/task/{type}/{task}', 'ApiController@retain');
+
+
+Route::group(['middleware' => 'cors'], function () {
+    // Define your API routes here
+    Route::get('/task/{type}/{task}', 'ApiController@retain');
+});
+
