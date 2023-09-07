@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Route::get('/task/{type}/{task}', [ApiController::class, 'retain']);
+Route::get('/task/{type}/{task}', 'ApiController@retain');

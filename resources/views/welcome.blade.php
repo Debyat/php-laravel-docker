@@ -1,99 +1,143 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
 
-        <title>Laravel</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  {{-- <title>Material Design Bootstrap Template</title> --}}
+  <link rel="icon" type="image/x-icon" href="https://irp-cdn.multiscreensite.com/5d54c1dd/site_favicon_16_1612333745562.ico">
+  <title>MyPortal™ Marketing Inc. -Login</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  {{-- <link href="../../css/bootstrap.min.css" rel="stylesheet"> --}}
+  <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  {{-- <link href="../../css/mdb.min.css" rel="stylesheet"> --}}
+  <link href="{{asset('css/mdb.min.css')}}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <style>
+    html,
+    body,
+    header,
+    .view {
+      height: 100%;
+    }
+    .form-header {
+        border-radius: 10px;
+        background: white;
+        box-shadow: unset;
+        display: flex;
+        justify-content: center;
+    }
+    @media (min-width: 560px) and (max-width: 740px) {
+      html,
+      body,
+      header,
+      .view {
+        height: 650px;
+      }
+    }
+    @media (min-width: 800px) and (max-width: 850px) {
+      html,
+      body,
+      header,
+      .view  {
+        height: 650px;
+      }
+    }
+  </style>
+</head>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+<body class="login-page">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+  <!-- Main Navigation -->
+  <header>
 
-            .full-height {
-                height: 100vh;
-            }
+    <!-- Intro Section -->
+    <section class="view intro-2">
+      <div class="mask rgba-stylish-strong h-100 d-flex justify-content-center align-items-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-5">
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+                @if($errors->any())
+                    <div class="card red lighten-1 text-center z-depth-2 mb-5">
+                        <div class="card-body">
+                            <p class="white-text mb-0">
+                                Email or Password is Incorrect.
+                            </p>
+                        </div>
+                    </div>
+                @endif
 
-            .position-ref {
-                position: relative;
-            }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+              <!-- Form with header -->
+              <div class="card wow fadeIn" data-wow-delay="0.3s">
+                <div class="card-body">
 
-            .content {
-                text-align: center;
-            }
+                  <!-- Header -->
+                  <div class="form-header">
+                    <img src="{{asset('img/Logo1.webp')}}" alt="" style="width: 70%">
+                  </div>
 
-            .title {
-                font-size: 84px;
-            }
+                  <!-- Body -->
+                    <form action="{{ route('login') }}" method="POST">
+                        @csrf
+                        <div class="md-form">
+                            <i class="fas fa-envelope prefix white-text"></i>
+                            <input type="text" id="orangeForm-email" class="form-control" name="email">
+                            <label for="orangeForm-email">Your email</label>
+                        </div>
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+                        <div class="md-form">
+                            <i class="fas fa-lock prefix white-text"></i>
+                            <input type="password" id="orangeForm-pass" class="form-control" name="password">
+                            <label for="orangeForm-pass">Your password</label>
+                        </div>
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <div class="text-center">
+                            <button class="btn blue-gradient btn-lg">Sign In</button>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+                        </div>
+                    </form>
                 </div>
-            @endif
+              </div>
+              <!-- Form with header -->
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
             </div>
+          </div>
         </div>
-    </body>
+      </div>
+    </section>
+    <!-- Intro Section -->
+
+  </header>
+  <!-- Main Navigation -->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  {{-- <script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script> --}}
+  <script type="text/javascript" src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
+
+  <!-- Bootstrap tooltips -->
+  {{-- <script type="text/javascript" src="../../js/popper.min.js"></script> --}}
+  <script type="text/javascript" src="{{asset('js/popper.min.js')}}"></script>
+  <!-- Bootstrap core JavaScript -->
+  {{-- <script type="text/javascript" src="../../js/bootstrap.min.js"></script> --}}
+  <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+  <!-- MDB core JavaScript -->
+  {{-- <script type="text/javascript" src="../../js/mdb.js"></script> --}}
+  <script type="text/javascript" src="{{asset('js/mdb.js')}}"></script>
+
+  <!-- Custom scripts -->
+  <script>
+
+    new WOW().init();
+
+  </script>
+
+</body>
+
 </html>
