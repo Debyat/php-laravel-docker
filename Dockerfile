@@ -17,4 +17,18 @@ ENV LOG_CHANNEL stderr
 # Allow composer to run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
+# ... (other instructions)
+
+# Copy the cron script to the container
+COPY cron.sh /cron.sh
+
+# Allow execution of the cron script
+RUN chmod +x /cron.sh
+
+# Add the cron job to the crontab
+RUN crontab -l | { cat; echo "* * * * * /cron.sh"; } | crontab -
+
+# ... (other instructions)
+
 CMD ["/start.sh"]
+
