@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Task;
 
 class DemoCron extends Command
 {
@@ -37,8 +38,14 @@ class DemoCron extends Command
      */
     public function handle()
     {
-        \Log::info('Cron is working fine!');
+        $task = Task::create([
+            'name' => 'Alias',
+            'access_token' => 'sadsa15d4asd4sda4d5sad',
+            'provider' => 'username',
+            'type' => 'yelp',
+            'depth' => '10000',
+            'sort_by' => 'spsa;ldkaskdsa',
+        ]);
 
-        $this->info('Demo:Cron Cummand Run successfully!');
     }
 }
